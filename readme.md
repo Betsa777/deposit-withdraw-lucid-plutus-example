@@ -3,7 +3,7 @@
 # **Deposit Validator — Documentation**
 
 This document explains the structure, purpose, and validation logic of the **Dep** Plutus smart contract written in Haskell (Plutus V2).
-The contract enforces two conditions for a withdrawal/spend:
+The contract enforces two conditions for a withdrawal/spend
 
 1. The transaction must be signed by a specific public key.
 2. A specific output must send at least a given amount of ADA to a specific public key hash.
