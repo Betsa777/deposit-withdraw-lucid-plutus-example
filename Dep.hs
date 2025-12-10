@@ -57,12 +57,13 @@ validator datum redeemer ctx =
     case redeemer of 
         WRedeemer withdrawerPKH-> let txSign = txSignedBy  (scriptContextTxInfo ctx) withdrawerPKH
                                       txOutputs = txInfoOutputs (scriptContextTxInfo ctx)
+                                      scriptOuput = length (getContinuingOutputs ctx) == 0
                                       goodFunds = any (\o -> valueOf (txOutValue o) adaSymbol adaToken >= amount datum
                                                              && case addressCredential (txOutAddress o) of 
                                                                  PubKeyCredential pkh -> pkh == signer datum
                                                                  _ -> False
                                                      ) txOutputs
-                                   in txSign && goodFunds
+                                   in txSign && goodFunds && scriptOuput
                                      
         _ -> False
 
